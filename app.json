@@ -1,4 +1,9 @@
 {
+  "entryPoint": "./app/home/index.tsx",
   "name": "portfolio-react-expo",
-  "slug": "portfolio-react-expo"
+  "slug": "portfolio-react-expo",
+  "plugins": ["expo-router"],
+  "web": {
+    "bundler": "metro"
+  }
 }

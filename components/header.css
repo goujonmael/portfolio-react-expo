@@ -1,0 +1,18 @@
+.header {
+    background-color: #333;
+    padding: 10px;
+    color: white;
+}
+
+.nav-list {
+    list-style-type: none;
+    display: flex;
+    justify-content: space-around;
+    margin: 0;
+    padding: 0;
+}
+
+.nav-link {
+    color: white;
+    text-decoration: none;
+}
