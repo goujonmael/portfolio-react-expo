@@ -1,31 +1,54 @@
 import { BlurView } from "expo-blur";
 import React from "react";
-import { ScrollView, ImageBackground } from "react-native";
+import { ImageBackground, View, Text, ScrollView } from "react-native";
 import Animated, { SlideInLeft } from "react-native-reanimated";
+import { FlatList } from "react-native-gesture-handler";
+import { isMobile } from "react-device-detect";
 import "./index.css";
 
 const Home = () => {
-  const components = Array.from({ length: 30 }).map((_, index) => (
-    <BlurView
-      intensity={50}
-      tint="dark"
-      style={{
-        width: 300,
-        height: 300,
-        borderRadius: 10,
-        paddingTop: 10,
-        margin: 10,
-      }}
+  const data = Array.from({ length: 30 }).map((_, index) => ({
+    key: `${index}`,
+  }));
+
+  const renderItem = ({ item, index }) => (
+    <Animated.View
+      key={item.key}
+      entering={SlideInLeft.duration(450).delay(index * 30)}
     >
-      <Animated.View
-        key={index}
-        entering={SlideInLeft.duration(450).delay(index * 30)}
-      >
-        <Animated.Text style={{ color: "white" }}>Home page</Animated.Text>
-        <Animated.Text>COUCOU</Animated.Text>
-      </Animated.View>
-    </BlurView>
-  ));
+      {isMobile ? (
+        <BlurView
+          intensity={50}
+          tint="dark"
+          style={{
+            width: 300,
+            height: 100,
+            borderRadius: 10,
+            paddingTop: 10,
+            margin: 10,
+          }}
+        >
+          <Text style={{ color: "white" }}>Home page</Text>
+          <Text>COUCOU</Text>
+        </BlurView>
+      ) : (
+        <BlurView
+          intensity={50}
+          tint="dark"
+          style={{
+            width: 600,
+            height: 300,
+            borderRadius: 10,
+            paddingTop: 10,
+            margin: 10,
+          }}
+        >
+          <Text style={{ color: "white" }}>Home page</Text>
+          <Text>COUCOU</Text>
+        </BlurView>
+      )}
+    </Animated.View>
+  );
 
   return (
     <ImageBackground
@@ -34,18 +57,29 @@ const Home = () => {
       }}
       style={{ flex: 1 }}
     >
-      <ScrollView contentContainerStyle={{ flexGrow: 1 }}>
-        <Animated.View
-          style={{
+      {isMobile ? (
+        <FlatList
+          data={data}
+          renderItem={renderItem}
+          contentContainerStyle={{
+            flexDirection: "row",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        />
+      ) : (
+        <ScrollView
+          contentContainerStyle={{
             flexDirection: "row",
             flexWrap: "wrap",
             justifyContent: "center",
             alignItems: "center",
           }}
         >
-          {components}
-        </Animated.View>
-      </ScrollView>
+          {data.map((item, index) => renderItem({ item, index }))}
+        </ScrollView>
+      )}
     </ImageBackground>
   );
 };

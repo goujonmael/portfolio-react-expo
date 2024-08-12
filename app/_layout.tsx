@@ -10,9 +10,6 @@ export default function Layout() {
       <Header />
       <Stack
         screenOptions={{
-          headerStyle: {
-            backgroundColor: "#f4511e",
-          },
           headerTintColor: "#fff",
           headerTitleStyle: {
             fontWeight: "bold",
@@ -22,9 +19,15 @@ export default function Layout() {
       >
         {/* Optionally configure static options outside the route.*/}
         <Stack.Screen name="home" options={{}} />
+        <Stack.Screen
+          name="modal"
+          options={{
+            // Set the presentation mode to modal for our modal route.
+            presentation: "containedTransparentModal",
+          }}
+        />
       </Stack>
-      
-        <Header />
+
       <Footer />
     </>
   );

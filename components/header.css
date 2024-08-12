@@ -2,17 +2,54 @@
     background-color: #333;
     padding: 10px;
     color: white;
+    display: flex;
+    align-items: center; /* Center items vertically */
+    justify-content: space-between; /* Distribute space between items */
+    margin: 0;
 }
 
 .nav-list {
     list-style-type: none;
     display: flex;
-    justify-content: space-around;
     margin: 0;
     padding: 0;
+    flex: 1; /* Take up remaining space */
+    justify-content: flex-end; /* Align nav links to the right */
 }
 
 .nav-link {
     color: white;
     text-decoration: none;
+    margin-left: 20px; /* Add some space between links */
+}
+
+.profile-image {
+    height: 5vh;
+    border-radius: 10px;
+    margin-right: 20px; /* Add some space between image and nav links */
+}
+
+/* Media query for smaller screens */
+@media (max-width: 768px) {
+    .header {
+        flex-direction: column; /* Stack items vertically */
+        align-items: flex-start; /* Align items to the start */
+    }
+
+    .nav-list {
+        justify-content: center; /* Center nav links */
+        flex: none; /* Reset flex property */
+        width: 100%; /* Take full width */
+        margin-top: 10px; /* Add some space above nav links */
+    }
+
+    .nav-link {
+        margin-left: 0; /* Reset margin */
+        margin-right: 20px; /* Add space between links */
+    }
+
+    .profile-image {
+        margin-right: 0; /* Reset margin */
+        margin-bottom: 10px; /* Add space below image */
+    }
 }

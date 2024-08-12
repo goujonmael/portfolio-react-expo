@@ -11,6 +11,7 @@
     "expo-router": "~3.5.21",
     "expo-status-bar": "~1.12.1",
     "react": "18.2.0",
+    "react-device-detect": "^2.2.3",
     "react-dom": "18.2.0",
     "react-native": "0.74.1",
     "react-native-gesture-handler": "^2.18.1",
