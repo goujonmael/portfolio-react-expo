@@ -23,7 +23,7 @@ body {
 .nav-list {
     list-style-type: none;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
     gap: 1rem;
 }
 

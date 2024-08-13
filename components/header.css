@@ -41,7 +41,7 @@
     }
 
     .nav-list {
-        justify-content: center; /* Center nav links */
+        justify-content: space-evenly; /* Center nav links */
         flex: none; /* Reset flex property */
         width: 100%; /* Take full width */
         margin-top: 10px; /* Add some space above nav links */
