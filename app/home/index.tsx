@@ -14,6 +14,7 @@ import { FlatList, Pressable } from "react-native-gesture-handler";
 import { isMobile } from "react-device-detect";
 import "./index.css";
 import StoreContextProvider, { StoreContext } from "../StoreContext";
+import { router } from "expo-router";
 
 const Home = () => {
   const {
@@ -33,6 +34,8 @@ const Home = () => {
         style={styles.pressable}
         onPress={() => {
           updateSelectedItem(item.key);
+          showModal();
+          router.push("/modal");
         }}
       >
         <Text>Index : </Text>
