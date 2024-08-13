@@ -1,12 +1,14 @@
 import { BlurView } from "expo-blur";
-import React from "react";
-import { ImageBackground, View, Text, ScrollView } from "react-native";
+import React, { useContext } from "react";
+import { ImageBackground, View, Text, ScrollView, Button } from "react-native";
 import Animated, { SlideInLeft } from "react-native-reanimated";
 import { FlatList } from "react-native-gesture-handler";
 import { isMobile } from "react-device-detect";
 import "./index.css";
+import StoreContextProvider, { StoreContext } from "../StoreContext";
 
 const Home = () => {
+  const { isModalVisible, showModal, hideModal } = useContext(StoreContext);
   const data = Array.from({ length: 30 }).map((_, index) => ({
     key: `${index}`,
   }));
@@ -51,36 +53,38 @@ const Home = () => {
   );
 
   return (
-    <ImageBackground
-      source={{
-        uri: "https://cdn.britannica.com/13/234213-050-45F47984/dachshund-dog.jpg",
-      }}
-      style={{ flex: 1 }}
-    >
-      {isMobile ? (
-        <FlatList
-          data={data}
-          renderItem={renderItem}
-          contentContainerStyle={{
-            flexDirection: "row",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        />
-      ) : (
-        <ScrollView
-          contentContainerStyle={{
-            flexDirection: "row",
-            flexWrap: "wrap",
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          {data.map((item, index) => renderItem({ item, index }))}
-        </ScrollView>
-      )}
-    </ImageBackground>
+    <>
+      <ImageBackground
+        source={{
+          uri: "https://cdn.britannica.com/13/234213-050-45F47984/dachshund-dog.jpg",
+        }}
+        style={{ flex: 1 }}
+      >
+        {isMobile ? (
+          <FlatList
+            data={data}
+            renderItem={renderItem}
+            contentContainerStyle={{
+              flexDirection: "row",
+              flexWrap: "wrap",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          />
+        ) : (
+          <ScrollView
+            contentContainerStyle={{
+              flexDirection: "row",
+              flexWrap: "wrap",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            {data.map((item, index) => renderItem({ item, index }))}
+          </ScrollView>
+        )}
+      </ImageBackground>
+    </>
   );
 };
 
