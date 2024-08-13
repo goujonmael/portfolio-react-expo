@@ -54,6 +54,8 @@ const Home = () => {
 
   return (
     <>
+      <Text>Modal status :</Text>
+      <Text>{isModalVisible ? "Visible" : "Hidden"}</Text>
       <ImageBackground
         source={{
           uri: "https://cdn.britannica.com/13/234213-050-45F47984/dachshund-dog.jpg",

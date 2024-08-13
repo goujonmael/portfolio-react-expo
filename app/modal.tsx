@@ -1,41 +1,55 @@
-import { View, Platform, Text } from "react-native";
+import { View, Platform, Text, Pressable } from "react-native";
 import { Link, router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { BlurView } from "expo-blur";
-import Animated, { SharedTransition, SlideInLeft, withSpring } from "react-native-reanimated";
-
-const transition = SharedTransition.custom((values) => {
-    'worklet';
-    return {
-      height: withSpring(values.targetHeight),
-      width: withSpring(values.targetWidth),
-    };
-  });
+import Animated, {
+  SharedTransition,
+  SlideInLeft,
+  withSpring,
+} from "react-native-reanimated";
+import StoreContextProvider, { StoreContext } from "../app/StoreContext";
+import { useContext, useEffect } from "react";
 
 export default function Modal() {
-  // If the page was reloaded or navigated to directly, then the modal should be presented as
-  // a full screen page. You may need to change the UI to account for this.
-  const isPresented = router.canGoBack();
-  return (
-    <BlurView
-      intensity={50}
-      tint="dark"
+  const { isModalVisible, showModal, hideModal } = useContext(StoreContext);
+
+  const toggleModal = () => {
+    if (isModalVisible) {
+      hideModal();
+      router.push("/");
+    } else {
+      showModal();
+    }
+  };
+
+  return isModalVisible ? (
+    <View
       style={{
-        width: "100%",
-        height: "100%",
-        borderRadius: 10,
-        paddingTop: 10,
-        margin: 10,
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
       }}
     >
-      <Animated.View sharedTransitionStyle={transition} sharedTransitionTag="sharedTag" style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
-        {/* Use `../` as a simple way to navigate to the root. This is not analogous to "goBack". */}
-        {!isPresented && <Link href="../">Dismiss</Link>}
-        {/* Native modals have dark backgrounds on iOS. Set the status bar to light content and add a fallback for other platforms with auto. */}
-        <StatusBar style={Platform.OS === "ios" ? "light" : "auto"} />
-        <Text>HELLO FROM THE MODAL</Text>
-        <Link href="/" className="nav-link">Close</Link>
-      </Animated.View>
-    </BlurView>
-  );
+      <BlurView
+        intensity={50}
+        tint="dark"
+        style={{
+          width: "60%",
+          height: "60%",
+          borderRadius: 10,
+          paddingTop: 10,
+          margin: 10,
+        }}
+      >
+        <View style={{ flex: 1, alignItems: "center", justifyContent: "center" }}>
+          <Text>HELLO FROM THE MODAL</Text>
+          <Pressable onPress={toggleModal}>
+            <Link href="/" className="nav-link">
+              Close
+            </Link>
+          </Pressable>
+        </View>
+      </BlurView>
+    </View>
+  ) : null;
 }

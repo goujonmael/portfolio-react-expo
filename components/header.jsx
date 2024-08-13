@@ -1,8 +1,22 @@
-import React from "react";
-import { Link } from "expo-router";
+import React, { useContext } from "react";
+import { Link, router } from "expo-router";
 import "./header.css"; // Import the CSS file
+import StoreContextProvider, { StoreContext } from "../app/StoreContext";
+import { Pressable, Text } from "react-native";
 
 const Header = () => {
+  const { isModalVisible, showModal, hideModal } = useContext(StoreContext);
+
+  const toggleModal = () => {
+    if (isModalVisible) {
+      hideModal();
+      router.push("/");
+    } else {
+      showModal();
+      router.push("/modal");
+    }
+  };
+
   return (
     <header className="header">
       <img
@@ -32,7 +46,11 @@ const Header = () => {
             </Link>
           </li>
           <li>
-            <Link href="/modal">Present modal</Link>
+            <Pressable onPress={toggleModal} className="nav-link">
+            <Link href="/modal" className="nav-link">
+              Modal
+            </Link>
+            </Pressable>
           </li>
         </ul>
       </nav>

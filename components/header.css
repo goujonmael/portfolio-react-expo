@@ -6,6 +6,7 @@
     align-items: center; /* Center items vertically */
     justify-content: space-between; /* Distribute space between items */
     margin: 0;
+    overflow-x: hidden; /* Prevent horizontal overflow */
 }
 
 .nav-list {
@@ -21,6 +22,9 @@
     color: white;
     text-decoration: none;
     margin-left: 20px; /* Add some space between links */
+    font-family: inherit; /* Inherit font family */
+    font-size: inherit; /* Inherit font size */
+    cursor: pointer; /* Add pointer cursor */
 }
 
 .profile-image {
@@ -41,11 +45,11 @@
         flex: none; /* Reset flex property */
         width: 100%; /* Take full width */
         margin-top: 10px; /* Add some space above nav links */
+        overflow-x: auto; /* Allow horizontal scrolling if needed */
     }
 
     .nav-link {
         margin-left: 0; /* Reset margin */
-        margin-right: 20px; /* Add space between links */
     }
 
     .profile-image {
