@@ -22,8 +22,8 @@
     color: white;
     text-decoration: none;
     margin-left: 20px; /* Add some space between links */
-    font-family: inherit; /* Inherit font family */
-    font-size: inherit; /* Inherit font size */
+    font-family: Montserrat; /* Inherit font family */
+    font-size: 10; /* Inherit font size */
     cursor: pointer; /* Add pointer cursor */
 }
 

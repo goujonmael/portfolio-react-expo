@@ -5,6 +5,7 @@ export const StoreContext = createContext();
 const StoreContextProvider = (props) => {
     const [isModalVisible, setModalVisible] = useState(false);
     const [selectedItem, setSelectedItem] = useState(null);
+    const [animateHomeCards, setAnimateHomeCards] = useState(true);
 
     const showModal = () => setModalVisible(true);
     const hideModal = () => setModalVisible(false);
@@ -23,8 +24,12 @@ const StoreContextProvider = (props) => {
         document.cookie = `selectedItem=${JSON.stringify(item)}`;
     }
 
+    const updateAnimateHomeCards = (value) => {
+        setAnimateHomeCards(value);
+    }
+
     return (
-        <StoreContext.Provider value={{ isModalVisible, showModal, hideModal, getSelectedItem, updateSelectedItem }}>
+        <StoreContext.Provider value={{ isModalVisible, showModal, hideModal, getSelectedItem, updateSelectedItem, animateHomeCards, setAnimateHomeCards, updateAnimateHomeCards }}>
             {props.children}
         </StoreContext.Provider>
     );

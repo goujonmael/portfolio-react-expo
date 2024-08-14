@@ -17,11 +17,15 @@ export default function Modal() {
     hideModal,
     getSelectedItem,
     updateSelectedItem,
+    animateHomeCards,
+    setAnimateHomeCards,
+    updateAnimateHomeCards,
   } = useContext(StoreContext);
 
   const toggleModal = () => {
     if (isModalVisible) {
       hideModal();
+      updateAnimateHomeCards(false);
       router.push("/");
     } else {
       showModal();
